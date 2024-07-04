@@ -1,0 +1,20 @@
+{
+  "name": "devdocs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "tsc && electron .",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/electron": "^1.6.10",
+    "@types/node": "^20.14.9",
+    "electron": "^31.1.0",
+    "typescript": "^5.5.3"
+  }
+}

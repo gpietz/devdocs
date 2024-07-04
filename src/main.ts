@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, dialog } from 'electron';
+import { app, BrowserWindow, Menu } from 'electron';
 import * as path from 'path';
 import { createMainMenu } from './main_menu';
 
@@ -8,6 +8,7 @@ const createWindow = () => {
     mainWindow = new BrowserWindow({
         width: 1280,
         height: 1024,
+        backgroundColor: '#1f1f1f',
         webPreferences: {
             nodeIntegration: true,
             preload: path.join(__dirname, 'preload.js'),

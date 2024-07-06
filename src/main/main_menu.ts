@@ -1,5 +1,8 @@
 import { Menu, MenuItem, BrowserWindow } from 'electron';
-import { showInfoDialog } from './dialogs';
+import {showInfoDialog} from '../shared/dialogs';
+import path from "path";
+
+let settingsWindow: BrowserWindow;
 
 export function createMainMenu(mainWindow: BrowserWindow): Menu {
     const menuTemplate: (Electron.MenuItemConstructorOptions | MenuItem)[] = [
@@ -16,6 +19,13 @@ export function createMainMenu(mainWindow: BrowserWindow): Menu {
                     label: 'Open',
                     click: () => {
 
+                    }
+                },
+                { type: 'separator' },
+                {
+                    label: 'Settings',
+                    click: () => {
+                        openSettingsWindow(mainWindow);
                     }
                 },
                 { type: 'separator' },
@@ -37,4 +47,20 @@ export function createMainMenu(mainWindow: BrowserWindow): Menu {
     ];
 
     return Menu.buildFromTemplate(menuTemplate)
+}
+
+function openSettingsWindow(mainWindow: BrowserWindow) {
+    settingsWindow = new BrowserWindow({
+        width: 300,
+        height: 200,
+        title: 'Settings',
+        parent: mainWindow,
+        modal: true,
+        show: false,
+        darkTheme: true
+    })
+    settingsWindow.menuBarVisible = false;
+    settingsWindow.loadURL(path.join(__dirname,  '../views/settings.html'));
+    settingsWindow.addShowOnReady();
+    settingsWindow.addEscapeHandler();
 }

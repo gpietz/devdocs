@@ -1,6 +1,7 @@
 import { app, BrowserWindow, Menu } from 'electron';
 import * as path from 'path';
 import { createMainMenu } from './main_menu';
+import '../shared/electron_extensions';
 
 let mainWindow: BrowserWindow;
 
@@ -9,8 +10,10 @@ const createWindow = () => {
         width: 1280,
         height: 1024,
         backgroundColor: '#1f1f1f',
+        show: false,
         webPreferences: {
             nodeIntegration: true,
+            contextIsolation: false,
             preload: path.join(__dirname, 'preload.js'),
         },
     });
@@ -19,8 +22,8 @@ const createWindow = () => {
     const mainMenu = createMainMenu(mainWindow);
     Menu.setApplicationMenu(mainMenu);
 
-    mainWindow.loadFile(path.join(__dirname,  '../index.html'));
-
+    mainWindow.loadFile(path.join(__dirname,  '../views/index.html'));
+    mainWindow.addShowOnReady();
     mainWindow.on('closed', () => {
         mainWindow = null!;
     });

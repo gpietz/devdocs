@@ -2,10 +2,13 @@
   "name": "devdocs",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/main.js",
+  "main": "dist/main/main.js",
   "scripts": {
-    "start": "tsc && electron .",
-    "build": "tsc",
+    "start": "npm run build && electron .",
+    "build": "tsc && npm run copy-files",
+    "copy-files": "copyfiles -u 1 src/**/*.html src/**/*.css dist/",
+    "postbuild": "npm run copy-files",
+    "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,6 +17,7 @@
   "devDependencies": {
     "@types/electron": "^1.6.10",
     "@types/node": "^20.14.9",
+    "copyfiles": "^2.4.1",
     "electron": "^31.1.0",
     "typescript": "^5.5.3"
   }

@@ -1,6 +1,6 @@
 import { ipcRenderer, IpcRendererEvent } from 'electron';
 
-function updateStatusBar(message: string): void {
+export function updateStatusBar(message: string): void {
     const statusBarElement = document.getElementById('statusBar');
     if (statusBarElement) {
         statusBarElement.textContent = message;
@@ -12,5 +12,9 @@ ipcRenderer.on('update-status', (_event: IpcRendererEvent, message: string) => {
     updateStatusBar(message);
 });
 
-// Export function
-export { updateStatusBar };
+export function updateContent(newContent: string) {
+    const contentDiv = document.getElementById('content');
+    if (contentDiv) {
+        contentDiv.textContent = newContent;
+    }
+}

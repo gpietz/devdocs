@@ -15,10 +15,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/electron": "^1.6.10",
     "@types/node": "^20.14.9",
     "copyfiles": "^2.4.1",
     "electron": "^31.1.0",
     "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "electron-store": "^10.0.0"
   }
 }
